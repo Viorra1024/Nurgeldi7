@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Library Hub</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <header class="navbar">
+        <div class="logo">📚 Library Hub</div>
+        <nav class="nav-links">
+            <a href="{% url 'home' %}">Home</a>
+            <a href="{% url 'all_users' %}">Users</a>
+            <a href="{% url 'all_books' %}">Books</a>
+            <a href="{% url 'return_book' %}">Return</a>
+            <a href="{% url 'add_book' %}">Add Book</a>
+            <a href="{% url 'register_user' %}">Register</a>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <h1>Welcome to Your Library</h1>
+        <div class="card-grid">
+            <a href="{% url 'register_user' %}" class="card">👤 Register Student or Pupil</a>
+            <a href="{% url 'add_book' %}" class="card">📕 Add Book</a>
+            <a href="{% url 'assign_book' %}" class="card">📚 Assign Book</a>
+            <a href="{% url 'return_book' %}" class="card">🔄 Return Book</a>
+            <a href="{% url 'all_books' %}" class="card">📘 View All Books</a>
+            <a href="{% url 'all_users' %}" class="card">👥 View All Users</a>
+            <a href="{% url 'file_manager' %}" class="card">📂 File Manager</a>
+            <a href="{% url 'check_user_type' %}" class="card">🆔 Check User Type</a>
+        </div>
+    </main>
+</body>
+</html>

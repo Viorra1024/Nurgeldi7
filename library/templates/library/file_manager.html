@@ -1,0 +1,44 @@
+{% extends 'library/base.html' %}
+{% load static %}
+{% block title %}File Manager{% endblock %}
+
+{% block content %}
+<div class="file-manager-page">
+  <h2 class="page-title">📁 File Manager</h2>
+
+  <div class="file-actions">
+    <!-- Export Books -->
+    <form action="{% url 'export_books_txt' %}" method="post">
+      {% csrf_token %}
+      <button type="submit" class="action-btn">📤 Export Books to TXT</button>
+    </form>
+
+    <!-- Import Books -->
+    <form action="{% url 'import_books_txt' %}" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <input type="file" name="file" required class="file-input" />
+      <button type="submit" class="action-btn">📥 Import Books from TXT</button>
+    </form>
+
+    <!-- Serialize -->
+    <form action="{% url 'serialize_library' %}" method="post">
+      {% csrf_token %}
+      <button type="submit" class="action-btn">💾 Save All to PKL</button>
+    </form>
+
+    <!-- Deserialize -->
+    <form action="{% url 'deserialize_library' %}" method="post">
+      {% csrf_token %}
+      <button type="submit" class="action-btn">📂 Load from PKL</button>
+    </form>
+
+    <!-- Clear All -->
+    <form action="{% url 'drop_all_data' %}" method="post" onsubmit="return confirm('Are you sure you want to delete everything?');">
+      {% csrf_token %}
+      <button type="submit" class="danger-btn">🗑️ Delete All Data</button>
+    </form>
+  </div>
+
+  <a href="{% url 'home' %}" class="back-button">← Back to Home</a>
+</div>
+{% endblock %}

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Library System{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar">
+  <div class="logo">📚 Library</div>
+  <div class="nav-links">
+    <a href="{% url 'home' %}">Home</a>
+    <a href="{% url 'all_users' %}">Users</a>
+    <a href="{% url 'assign_book' %}">Assign</a>
+    <a href="{% url 'return_book' %}">Return</a>
+    <a href="{% url 'add_book' %}">Add Book</a>
+    <a href="{% url 'add_student' %}">Register</a>
+  </div>
+</nav>
+
+<!-- Page content -->
+<div class="content">
+    {% block content %}
+    {% endblock %}
+</div>
+
+</body>
+</html>

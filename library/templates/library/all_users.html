@@ -1,0 +1,44 @@
+{% extends 'library/base.html' %}
+{% load static %}
+{% block title %}All Users{% endblock %}
+
+{% block content %}
+<h1>All Registered Users</h1>
+
+<div class="user-grid">
+  {% for student in students %}
+    <div class="user-card">
+      <h3>{{ student.name }} {{ student.surname }}</h3>
+      <p><strong>Type:</strong> Student</p>
+      <p><strong>Group:</strong> {{ student.group }}</p>
+      <p><strong>Borrowed Books:</strong></p>
+      <ul>
+        {% for book in student.borrowed_books.all %}
+          <li>{{ book.title }}</li>
+        {% empty %}
+          <li>No books</li>
+        {% endfor %}
+      </ul>
+    </div>
+  {% endfor %}
+
+  {% for pupil in pupils %}
+    <div class="user-card">
+      <h3>{{ pupil.name }} {{ pupil.surname }}</h3>
+      <p><strong>Type:</strong> Pupil</p>
+      <p><strong>Group:</strong> {{ pupil.group }}</p>
+      <p><strong>Age:</strong> {{ pupil.age }}</p>
+      <p><strong>Borrowed Books:</strong></p>
+      <ul>
+        {% for book in pupil.borrowed_books.all %}
+          <li>{{ book.title }}</li>
+        {% empty %}
+          <li>No books</li>
+        {% endfor %}
+      </ul>
+    </div>
+  {% endfor %}
+</div>
+
+<a href="{% url 'home' %}" class="back-link">← Back</a>
+{% endblock %}
