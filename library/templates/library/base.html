@@ -1,32 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Library System{% endblock %}</title>
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <meta charset="UTF-8">
+  <title>{% block title %}NeoLibrary{% endblock %}</title>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
-<body>
+<body class="layout-sidebar">
 
-<!-- Navbar -->
-<nav class="navbar">
-  <div class="logo">📚 Library</div>
-  <div class="nav-links">
-    <a href="{% url 'home' %}">Home</a>
-    <a href="{% url 'all_users' %}">Users</a>
-    <a href="{% url 'assign_book' %}">Assign</a>
-    <a href="{% url 'return_book' %}">Return</a>
-    <a href="{% url 'add_book' %}">Add Book</a>
-    <a href="{% url 'add_student' %}">Register</a>
-  </div>
-</nav>
+  <aside class="sidebar">
+    <div class="sidebar-logo">📘 NeoLibrary</div>
+    <nav class="sidebar-nav">
+      <a href="{% url 'home' %}">🏠 Home</a>
+      <a href="{% url 'register_user' %}">👤 Register</a>
+      <a href="{% url 'add_book' %}">📚 Add Book</a>
+      <a href="{% url 'assign_book' %}">📖 Assign</a>
+      <a href="{% url 'return_book' %}">🔄 Return</a>
+        <a href="{% url 'all_books' %}">📚 All books</a>
+      <a href="{% url 'all_users' %}">👥 Users</a>
+      <a href="{% url 'file_manager' %}">📁 File Manager</a>
+    </nav>
+  </aside>
 
-<!-- Page content -->
-<div class="content">
+  <main class="main-content">
     {% block content %}
     {% endblock %}
-</div>
+  </main>
 
 </body>
 </html>

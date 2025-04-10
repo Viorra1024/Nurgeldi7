@@ -3,44 +3,58 @@
 {% block title %}Register User{% endblock %}
 
 {% block content %}
-<h1>Register Student or Pupil</h1>
+<h1 class="page-header">👤 Register User</h1>
 
-<form method="post">
+<form method="post" class="register-form-grid animate-entry">
   {% csrf_token %}
 
-  <label for="user_type">User Type</label>
-  <select name="user_type" id="user_type" required>
-    <option value="">Select type</option>
-    <option value="student">Student</option>
-    <option value="pupil">Pupil</option>
-  </select>
+  <div class="form-left">
+    <div class="type-select-block">
+      <label for="user_type">User Type</label>
+      <select name="user_type" id="user_type" required>
+        <option value="">-- Select Type --</option>
+        <option value="student">Student</option>
+        <option value="pupil">Pupil</option>
+      </select>
+    </div>
 
-  <label for="user_id">User ID</label>
-  <input type="text" name="user_id" id="user_id" required>
+    <label for="user_id">User ID</label>
+    <input type="text" name="user_id" id="user_id" required>
 
-  <label for="name">Name</label>
-  <input type="text" name="name" id="name" required>
+    <label for="name">First Name</label>
+    <input type="text" name="name" id="name" required>
 
-  <label for="surname">Surname</label>
-  <input type="text" name="surname" id="surname" required>
-
-  <label for="group">Group</label>
-  <input type="text" name="group" id="group" required>
-
-  <div id="age-field" style="display:none;">
-    <label for="age">Age (only for pupils)</label>
-    <input type="number" name="age" id="age" min="7">
+    <label for="surname">Last Name</label>
+    <input type="text" name="surname" id="surname" required>
   </div>
 
-  <button type="submit">Register</button>
+  <div class="form-right">
+    <label for="group">Group</label>
+    <input type="text" name="group" id="group" required>
+
+    <div id="age-block" class="age-field hidden-age">
+      <label for="age">Age (only for pupils)</label>
+      <input type="number" name="age" id="age" min="7" max="18">
+    </div>
+  </div>
+
+  <div class="form-button">
+    <button type="submit">✅ Register</button>
+  </div>
 </form>
 
-<a href="{% url 'home' %}" class="back-link">← Back</a>
+<a href="{% url 'home' %}" class="back-link">← Back to Home</a>
 
 <script>
-  document.getElementById('user_type').addEventListener('change', function () {
-    const ageField = document.getElementById('age-field');
-    ageField.style.display = this.value === 'pupil' ? 'block' : 'none';
+  const userTypeSelect = document.getElementById('user_type');
+  const ageBlock = document.getElementById('age-block');
+
+  userTypeSelect.addEventListener('change', function () {
+    if (this.value === 'pupil') {
+      ageBlock.classList.remove('hidden-age');
+    } else {
+      ageBlock.classList.add('hidden-age');
+    }
   });
 </script>
 {% endblock %}

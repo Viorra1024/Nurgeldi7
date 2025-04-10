@@ -3,30 +3,36 @@
 {% block title %}Assign Book{% endblock %}
 
 {% block content %}
-<h1>Assign a Book to User</h1>
+<h1 class="page-header">Assign a Book</h1>
 
-<form method="post">
+<form method="post" class="assign-form-grid animate-entry">
   {% csrf_token %}
 
-  <label for="user_id">Select User</label>
-  <select name="user_id" id="user_id" required>
-    {% for student in students %}
-      <option value="{{ student.id }}">{{ student.name }} {{ student.surname }} (Student)</option>
-    {% endfor %}
-    {% for pupil in pupils %}
-      <option value="{{ pupil.id }}">{{ pupil.name }} {{ pupil.surname }} (Pupil)</option>
-    {% endfor %}
-  </select>
+  <div class="assign-left">
+    <label for="user_id">Select User</label>
+    <select name="user_id" id="user_id" required>
+      {% for student in students %}
+        <option value="{{ student.id }}">{{ student.name }} {{ student.surname }} (Student)</option>
+      {% endfor %}
+      {% for pupil in pupils %}
+        <option value="{{ pupil.id }}">{{ pupil.name }} {{ pupil.surname }} (Pupil)</option>
+      {% endfor %}
+    </select>
+  </div>
 
-  <label for="book_id">Select Book</label>
-  <select name="book_id" id="book_id" required>
-    {% for book in books %}
-      <option value="{{ book.id }}">{{ book.title }} ({{ book.quantity }} available)</option>
-    {% endfor %}
-  </select>
+  <div class="assign-right">
+    <label for="book_id">Select Book</label>
+    <select name="book_id" id="book_id" required>
+      {% for book in books %}
+        <option value="{{ book.id }}">{{ book.title }} ({{ book.quantity }} available)</option>
+      {% endfor %}
+    </select>
+  </div>
 
-  <button type="submit">Assign Book</button>
+  <div class="form-button">
+    <button type="submit">📖 Assign Book</button>
+  </div>
 </form>
 
-<a href="{% url 'home' %}" class="back-link">← Back</a>
+<a href="{% url 'home' %}" class="back-link">← Back to Home</a>
 {% endblock %}
